@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace CompositeData
 {
-    public class Enumeration : IComparable
+    public class Enumeration : IEquatable<Enumeration>, IComparable<Enumeration>
     {
         protected Enumeration()
             : this(0, null) {}
@@ -28,15 +28,17 @@ namespace CompositeData
 
         public override bool Equals(object obj)
         {
-            if (!(obj is Enumeration enumeration))
-            {
-                return false;
-            }
+            return obj is Enumeration other && Equals(other);
+        }
 
-            var typeMatches = GetType() == obj.GetType();
-            var valueMatches = Value.Equals(enumeration.Value);
+        public bool Equals(Enumeration other)
+        {
+            return Value.Equals(other.Value);
+        }
 
-            return typeMatches && valueMatches;
+        public int CompareTo(Enumeration other)
+        {
+            return other.Value.CompareTo(other.Value);
         }
 
         public static bool operator ==(Enumeration left, Enumeration right) => left?.Value.Equals(right?.Value) ?? false;
@@ -173,7 +175,7 @@ namespace CompositeData
         }
     }
 
-    public class ItemType : Enumeration
+    public class ItemType : Enumeration, IEquatable<ItemType>
     {
         private ItemType(int value, string displayName)
             : base(value, displayName) {}
@@ -186,5 +188,12 @@ namespace CompositeData
 
         public static implicit operator ItemType(int value) => FromValueOrDefault<ItemType>(value, value);
         public static implicit operator ItemType(string displayName) => FromDisplayName<ItemType>(displayName);
+
+        public bool Equals(ItemType other)
+        {
+            return base.Equals(other);
+        }
+
+
     }
 }

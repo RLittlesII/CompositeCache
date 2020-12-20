@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="DynamicData" Version="6.15.1" />
-      <PackageReference Include="ReactiveUI" Version="11.4.17" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DynamicData" Version="7.*" />
+    <PackageReference Include="ReactiveUI" Version="13.*" />
+  </ItemGroup>
 
 </Project>

@@ -12,14 +12,14 @@ namespace Tests
         {
             // Given
             ItemCache sut = new ItemCacheFixture();
-            sut.Filter(ItemType.Thing1);
+            sut.Filter = ItemType.Thing1;
             sut.AddOrUpdate(1, ItemType.Thing1);
 
             sut.Items
                 .Should()
                 .NotBeEmpty();
 
-            sut.Filter(ItemType.Thing2);
+            sut.Filter = ItemType.Thing2;
             sut.AddOrUpdate(1, ItemType.Thing2);
 
             sut.Items
@@ -28,7 +28,7 @@ namespace Tests
 
             // When
             // POINT: [rlittlesii] if I filter back to Thing2, it's item persists
-            sut.Filter(ItemType.Thing1);
+            sut.Filter = ItemType.Thing1;
 
             // Then
             sut.Items
@@ -43,13 +43,13 @@ namespace Tests
         {
             // Given
             ItemCache sut = new ItemCacheFixture();
-            sut.Filter(ItemType.Thing1);
+            sut.Filter = ItemType.Thing1;
             sut.AddOrUpdate(1, ItemType.Thing1);
 
             // When
-            sut.Filter(ItemType.Thing2);
+            sut.Filter = ItemType.Thing2;
             sut.AddOrUpdate(2, ItemType.Thing2);
-            sut.Filter(ItemType.Thing1);
+            sut.Filter = ItemType.Thing1;
 
             // Then
             sut.Items
