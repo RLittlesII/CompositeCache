@@ -194,6 +194,14 @@ namespace CompositeData
             return base.Equals(other);
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is ItemType itemType && Equals(itemType);
+        }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
